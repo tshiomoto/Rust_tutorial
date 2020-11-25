@@ -1,3 +1,4 @@
+use thiserror::Error;
 use clap::Clap;
 use std::fs::File;
 use std::io::{BufReader, BufRead, stdin};
@@ -5,6 +6,16 @@ use std::path::PathBuf;
 
 struct RPNCalculator(bool);
 
+//エラーハンドリング
+#[derive(Error, Debug)]
+enum MyError {
+    #[error("failed to read string from {0}")]
+    ReadError(String),
+    #[error(transparent)]
+    ParseError(#[from] std::num::ParseIntError),
+}
+
+// アプリの実装
 #[derive(Clap, Debug)]
 #[clap(
     name = "my RPN profile",
