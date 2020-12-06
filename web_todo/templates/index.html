@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 
-<head>  
+<head>
     <meta charset="utf-8" />
-    <title>Todo App</title>
+    <title>todo App</title>
 </head>
 
 <body>
     <div>
         {% for entry in entries %}
         <div>
-            <div>id: {{ entry.id }}, text={{ entry.text }}</div>
-            <form action="/delete" method="POST">
+            <div>id: {{ entry.id }}, text: {{ entry.text }}</div>
+            <form action="/delete" method="post">
                 <input type="hidden" name="id" value="{{ entry.id }}">
                 <button>delete</button>
             </form>
@@ -19,7 +19,7 @@
         {% endfor %}
     </div>
 
-    <form action="/add" method="POST">
+    <form action="/add" method="post">
         <div>
             <input name="text">
         </div>
@@ -27,6 +27,6 @@
             <button>add</button>
         </div>
     </form>
-    
 </body>
+
 </html>
